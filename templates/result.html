@@ -7,13 +7,17 @@
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <div class="fadeIn first">
-                <h2 class="active"> Password Entered </h2>
+                <h2 class="active"> Service Responses </h2>
 
             </div>
 
             <div class="fadeIn second">
-                <br>
-                {{login_details}}
+                <ul>
+                    {% for response in all_responses %}
+                    <li>{{ response }}</li>
+                    {% endfor %}
+                </ul>
+
             </div>
         </div>
 
