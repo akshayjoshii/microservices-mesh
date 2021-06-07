@@ -32,6 +32,7 @@
 3. minikube
 4. kubectl
 5. pyopenssl
+6. hashlib
 
 ## Hints
 

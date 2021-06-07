@@ -1,4 +1,7 @@
 import os
+import requests
+
+requests.packages.urllib3.disable_warnings()
 
 # Root path of the repo
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
