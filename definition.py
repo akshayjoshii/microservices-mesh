@@ -10,8 +10,11 @@ ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 SSL_CERT = os.path.join(ROOT_PATH, 'static', 'ssl_certificate', 'cert.pem')
 SSL_KEY = os.path.join(ROOT_PATH, 'static', 'ssl_certificate', 'key.pem')
 
-SERVER_NAME = 'localhost'
+SERVER_NAME = '0.0.0.0'
 URL = SERVER_NAME + ':'
+
+# Port address of service_1
+MAIN_SERVER_PORT = '5000'
 
 COMMON_PASSWORDS_FILE = os.path.join(ROOT_PATH, "static", "common_passwords.txt")
 

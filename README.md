@@ -31,8 +31,9 @@
 2. flask
 3. minikube
 4. kubectl
-5. pyopenssl
-6. hashlib
+5. hashlib
+6. requests
+7. pyopenssl (optional - to generate self-signed SSL certificate)
 
 ## Hints
 
