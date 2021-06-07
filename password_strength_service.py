@@ -27,7 +27,7 @@ class PasswordStrength:
         self.multi_threaded = True
 
         # Alert messages
-        self.alert_msg = "Service 2: Password Strength is "
+        self.alert_msg = "Service 2: Password strength is "
 
     def check_password_strength(self, password):
 

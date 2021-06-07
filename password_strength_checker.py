@@ -152,15 +152,15 @@ class PasswordStrengthChecker:
                                 ))
 
         if password_strength_score < 20:
-            return 'Very Weak'
+            return '\'Very Weak\''
 
         elif password_strength_score < 60:
-            return 'Weak'
+            return '\'Weak\''
 
         elif password_strength_score < 125:
-            return 'Average'
+            return '\'Average\''
 
         elif password_strength_score < 200:
-            return 'Strong'
+            return '\'Strong\''
 
-        return 'Excellent'
+        return '\'Excellent\''

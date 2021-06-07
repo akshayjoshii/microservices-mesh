@@ -16,6 +16,7 @@ URL = SERVER_NAME + ':'
 COMMON_PASSWORDS_FILE = os.path.join(ROOT_PATH, "static", "common_passwords.txt")
 
 # Service Replies
+SERVICE_REPLY_1 = ''
 SERVICE_REPLY_2 = ''
 SERVICE_REPLY_3 = ''
 SERVICE_REPLY_4 = ''

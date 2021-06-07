@@ -64,7 +64,7 @@ class EnterPassword:
     def print_result():
         
         # Add all the service responses to a list
-        all_responses = [SERVICE_REPLY_2, SERVICE_REPLY_3, SERVICE_REPLY_4]
+        all_responses = [SERVICE_REPLY_1, SERVICE_REPLY_2, SERVICE_REPLY_3, SERVICE_REPLY_4]
 
         # Render the result page
         return render_template('result.html', all_responses=all_responses)
@@ -73,6 +73,9 @@ class EnterPassword:
     def orchestrate_services():
         if request.method == 'POST':
             login_details = request.form['password']
+
+            global SERVICE_REPLY_1
+            SERVICE_REPLY_1 = 'Service 1: Password entered is ' + login_details
 
             # Send password to service 2
             req_status_2 = requests.post(url = 'https://' + URL + '5001', 
