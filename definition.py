@@ -19,3 +19,6 @@ COMMON_PASSWORDS_FILE = os.path.join(ROOT_PATH, "static", "common_passwords.txt"
 SERVICE_REPLY_2 = ''
 SERVICE_REPLY_3 = ''
 SERVICE_REPLY_4 = ''
+
+# Status message
+STATUS = "Success"

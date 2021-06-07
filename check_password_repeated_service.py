@@ -63,7 +63,8 @@ def receive_password():
         repeated_password = RepeatedPassword()
         result = repeated_password.check_repeated_passwords(received_password)
 
-        response = requests.post(url = 'https://' + URL + '5000' + '/service_3', json={'reply':result}, verify=False)
+        response = requests.post(url = 'https://' + URL + '5000' + '/service_3', 
+                                    json={'reply':result}, verify=False)
 
         return 'JSON Posted'
 
