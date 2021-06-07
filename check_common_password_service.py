@@ -7,12 +7,12 @@ import requests
 from flask import Flask
 from flask import request
 
-from definition import COMMON_PASSWORDS_FILE, SSL_CERT, SSL_KEY, URL
+from definition import COMMON_PASSWORDS_FILE, SSL_CERT, SSL_KEY, SERVER_NAME, MAIN_SERVER_PORT
 
 flask_app = Flask(__name__)
 
 SERVER_PORT = '5003'
-flask_app.config['SERVER_NAME'] = URL + SERVER_PORT
+#flask_app.config['SERVER_NAME'] = URL + SERVER_PORT
 
 class CommonPassword:
     def __init__(self):
@@ -50,8 +50,8 @@ def receive_password():
         common_password = CommonPassword()
         result = common_password.check_common_passwords(received_password)
 
-        response = requests.post(url = 'https://' + URL + '5000' + '/service_4', 
-                                json={'reply':result}, verify=False)
+        response = requests.post(url = 'https://' + SERVER_NAME + ':' + MAIN_SERVER_PORT + \
+                                    '/service_4', json={'reply':result}, verify=False)
 
         return 'JSON Posted'
 
@@ -60,4 +60,4 @@ def receive_password():
 if __name__ == '__main__':
     common_password = CommonPassword()
     flask_app.run(ssl_context=common_password.ssl_credentials, threaded=common_password.
-                    multi_threaded, debug = True)
+                    multi_threaded, debug = True, host=SERVER_NAME, port=SERVER_PORT)

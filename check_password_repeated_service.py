@@ -9,12 +9,12 @@ from flask import request
 
 from hashlib import sha512
 
-from definition import SSL_CERT, SSL_KEY, URL
+from definition import SSL_CERT, SSL_KEY, SERVER_NAME, MAIN_SERVER_PORT
 
 flask_app = Flask(__name__)
 
 SERVER_PORT = '5002'
-flask_app.config['SERVER_NAME'] = URL + SERVER_PORT
+#flask_app.config['SERVER_NAME'] = URL + SERVER_PORT
 
 previous_passwords = []
 
@@ -63,8 +63,8 @@ def receive_password():
         repeated_password = RepeatedPassword()
         result = repeated_password.check_repeated_passwords(received_password)
 
-        response = requests.post(url = 'https://' + URL + '5000' + '/service_3', 
-                                    json={'reply':result}, verify=False)
+        response = requests.post(url = 'https://' + SERVER_NAME + ':' + MAIN_SERVER_PORT + \
+                                    '/service_3', json={'reply':result}, verify=False)
 
         return 'JSON Posted'
 
@@ -73,4 +73,4 @@ def receive_password():
 if __name__ == '__main__':
     repeated_password = RepeatedPassword()
     flask_app.run(ssl_context=repeated_password.ssl_credentials, threaded=repeated_password.
-                    multi_threaded, debug = True)
+                    multi_threaded, debug = True, host=SERVER_NAME, port=SERVER_PORT)
