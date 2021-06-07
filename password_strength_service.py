@@ -35,7 +35,7 @@ class PasswordStrength:
         password_strength_checker = PasswordStrengthChecker(password)
         strength_score = password_strength_checker.check_password_strength()
 
-        return self.alert_msg + str(strength_score)
+        return self.alert_msg + strength_score
         
 
 @flask_app.route('/', methods=['GET', 'POST'])

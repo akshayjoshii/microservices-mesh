@@ -150,4 +150,17 @@ class PasswordStrengthChecker:
                                     self.consecutive_numbers_score(),
                                     self.sequential_numbers_score(),
                                 ))
-        return password_strength_score
+
+        if password_strength_score < 20:
+            return 'Very Weak'
+
+        elif password_strength_score < 60:
+            return 'Weak'
+
+        elif password_strength_score < 125:
+            return 'Average'
+
+        elif password_strength_score < 200:
+            return 'Strong'
+
+        return 'Excellent'
