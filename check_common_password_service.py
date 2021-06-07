@@ -31,14 +31,14 @@ class CommonPassword:
         for each_password in self.common_password_list:
 
             if password == each_password:
-                alert_msg = "Service 4: Entered password is found in a common passwords list on " \
-                            "the Internet!"
+                alert_msg = "Service 4: Entered password is found in a common passwords " \
+                            "list on the Internet!"
 
                 return alert_msg
             
         # If password does not match with any passwords in the common passwords list
-        alert_msg = "Service 4: Entered password is not found in a common passwords list on " \
-                    "the Internet!"
+        alert_msg = "Service 4: Entered password is not found in a common passwords " \
+                    "list on the Internet!"
 
         return alert_msg
 
@@ -50,7 +50,8 @@ def receive_password():
         common_password = CommonPassword()
         result = common_password.check_common_passwords(received_password)
 
-        response = requests.post(url = 'https://' + URL + '5000' + '/service_4', json={'reply':result}, verify=False)
+        response = requests.post(url = 'https://' + URL + '5000' + '/service_4', 
+                                json={'reply':result}, verify=False)
 
         return 'JSON Posted'
 
@@ -58,5 +59,5 @@ def receive_password():
 
 if __name__ == '__main__':
     common_password = CommonPassword()
-    flask_app.run(ssl_context='adhoc', threaded=common_password.
+    flask_app.run(ssl_context=common_password.ssl_credentials, threaded=common_password.
                     multi_threaded, debug = True)
