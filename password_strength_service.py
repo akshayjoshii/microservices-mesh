@@ -7,7 +7,7 @@ import requests
 from flask import Flask
 from flask import request
 
-from definition import SSL_CERT, SSL_KEY, SERVER_NAME, MAIN_SERVER_PORT
+from definition import SSL_CERT, SSL_KEY, SERVER_NAME, MAIN_SERVER_PORT, URL
 
 from password_strength_checker import PasswordStrengthChecker
 
@@ -46,7 +46,7 @@ def receive_password():
         repeated_password = PasswordStrength()
         result = repeated_password.check_password_strength(received_password)
 
-        response = requests.post(url = 'https://' + SERVER_NAME + ':' + MAIN_SERVER_PORT + \
+        response = requests.post(url = 'https://' + URL + ':' + MAIN_SERVER_PORT + \
                                     '/service_2', json={'reply':result}, verify=False)
 
         return 'JSON Posted'

@@ -7,7 +7,8 @@ import requests
 from flask import Flask
 from flask import request
 
-from definition import COMMON_PASSWORDS_FILE, SSL_CERT, SSL_KEY, SERVER_NAME, MAIN_SERVER_PORT
+from definition import COMMON_PASSWORDS_FILE, SSL_CERT, SSL_KEY, SERVER_NAME, \
+                        MAIN_SERVER_PORT, URL
 
 flask_app = Flask(__name__)
 
@@ -50,7 +51,7 @@ def receive_password():
         common_password = CommonPassword()
         result = common_password.check_common_passwords(received_password)
 
-        response = requests.post(url = 'https://' + SERVER_NAME + ':' + MAIN_SERVER_PORT + \
+        response = requests.post(url = 'https://' + URL + ':' + MAIN_SERVER_PORT + \
                                     '/service_4', json={'reply':result}, verify=False)
 
         return 'JSON Posted'

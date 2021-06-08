@@ -78,19 +78,22 @@ class EnterPassword:
             SERVICE_REPLY_1 = 'Service 1: Password entered is ' + login_details
 
             # Send password to service 2
-            req_status_2 = requests.post(url = 'https://' + SERVER_NAME + ':' + '5001', 
-                                        json={'password':login_details}, verify=False)
+            req_status_2 = requests.post(url = 'https://' + URL + ':' + '5001', 
+                                        json={'password':login_details}, verify=False,
+                                        timeout=5)
 
             # Send password to service 3
-            req_status_3 = requests.post(url = 'https://' + SERVER_NAME + ':' + '5002', 
-                                        json={'password':login_details}, verify=False)
+            req_status_3 = requests.post(url = 'https://' + URL + ':' + '5002', 
+                                        json={'password':login_details}, verify=False,
+                                        timeout=5)
 
             # Send password to service 4
-            req_status_4 = requests.post(url = 'https://' + SERVER_NAME + ':' + '5003', 
-                                        json={'password':login_details}, verify=False)
+            req_status_4 = requests.post(url = 'https://' + URL + ':' + '5003', 
+                                        json={'password':login_details}, verify=False,
+                                        timeout=5)
                                     
 
-            return redirect('https://' + SERVER_NAME + ':' + MAIN_SERVER_PORT + '/result', code=302)
+            return redirect('https://' + URL + ':' + MAIN_SERVER_PORT + '/result', code=302)
       
     
 if __name__ == '__main__':

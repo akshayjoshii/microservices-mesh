@@ -1,5 +1,6 @@
 import os
 import requests
+import socket
 
 requests.packages.urllib3.disable_warnings()
 
@@ -11,7 +12,14 @@ SSL_CERT = os.path.join(ROOT_PATH, 'static', 'ssl_certificate', 'cert.pem')
 SSL_KEY = os.path.join(ROOT_PATH, 'static', 'ssl_certificate', 'key.pem')
 
 SERVER_NAME = '0.0.0.0'
-URL = SERVER_NAME + ':'
+
+"""
+# Due to limitations with Docker Desktop for Windows, I have practically no solution to get this 
+# address automatically. Without this address, the containers cannot communiacte with 
+# each other. Please change this address according to the IP address of your pc.
+Command: ipconfig
+"""
+URL = '192.168.56.1' 
 
 # Port address of service_1
 MAIN_SERVER_PORT = '5000'
