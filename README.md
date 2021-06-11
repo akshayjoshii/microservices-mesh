@@ -25,23 +25,51 @@
     * Routing
     * Security
 
-## Commands
+## Execution Instructions/Commands
 
-1. Generate Self-Signed SSL Certificate for HTTPS:  
+1. *Optional* - Generate Self-Signed SSL Certificate for HTTPS:  
    > openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
 
-2. Build multiple Dockerfiles in the same project
-   >  docker build -f service_1.Dockerfile -t poojiyengar5/service-1 . \
-   >  docker build -f service_2.Dockerfile -t poojiyengar5/service-2 . \
-
-3. Run the containers from the images built above
-   > docker run --name s_1 -itp 5000:5000 poojiyengar5/service-1 \
-   > docker run --name s_2 -itp 5001:5001 poojiyengar5/service-2 & so on... \
-
-4. Run the application by going to Chrome/Firefox browser & enter the [URL](https://localhost:5000)
-
-5. Setup minikube for the first time (only after wsl2, docker, minicube & kubectl are installed)
+2. Start minikube for the first time (only after wsl2, docker, minikube & kubectl are installed)
    > minikube start --driver=docker
+
+3. Check Minikube Dashboard
+   > minikube dashboard
+
+4. Set minikube to use local docker daemon (Run this everytime a new shell session is started)
+   > For Powershell: 'minikube docker-env | Invoke-Expression' \
+   > For Unix: 'eval $(minikube docker-env)'
+
+5. Build multiple Dockerfiles in the same project
+   > docker build --no-cache -f service_1.Dockerfile -t service:1 . \
+   > docker build --no-cache -f service_2.Dockerfile -t service:2 . \
+   > docker build --no-cache -f service_3.Dockerfile -t service:3 . \
+   > docker build --no-cache -f service_4.Dockerfile -t service:4 .
+
+6. Deploy the images as pods in Kubernetes
+   > kubectl create -f service-1.yml \
+   > kubectl create -f service-2.yml \
+   > kubectl create -f service-3.yml \
+   > kubectl create -f service-4.yml
+
+7. Check deployment status
+   > kubectl get svc \
+   > kubectl get deployments \
+   > kubectl get pods
+
+8. Start the services
+   > minikube service --url --https service-1 \
+   > minikube service --url --https service-2 \
+   > minikube service --url --https service-3 \
+   > minikube service --url --https service-4
+
+9. *Optional* - Run the containers directly from the images built above (Without using Kubernetes)
+   > docker run --name s_1 -itp 5000:5000 service:1 \
+   > docker run --name s_2 -itp 5001:5001 service:2 \
+   > docker run --name s_3 -itp 5002:5002 service:3 \
+   > docker run --name s_4 -itp 5003:5003 service:4
+
+10. Run the application by going to Chrome/Firefox browser & enter the URL displayed in the terminal (*Don't forget to use https*)
 
 ## Requirements
 
