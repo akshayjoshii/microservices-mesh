@@ -46,7 +46,7 @@ def receive_password():
         repeated_password = PasswordStrength()
         result = repeated_password.check_password_strength(received_password)
 
-        response = requests.post(url = 'https://' + URL + ':' + MAIN_SERVER_PORT + \
+        response = requests.post(url = 'https://' + URL + '1' + ':' + MAIN_SERVER_PORT + \
                                     '/service_2', json={'reply':result}, verify=False)
 
         return 'JSON Posted'
@@ -55,5 +55,5 @@ def receive_password():
 
 if __name__ == '__main__':
     repeated_password = PasswordStrength()
-    flask_app.run(ssl_context=repeated_password.ssl_credentials, threaded=repeated_password.
-                    multi_threaded, debug = True, host=SERVER_NAME, port=SERVER_PORT)
+    flask_app.run(threaded=repeated_password.multi_threaded, debug = True, host=SERVER_NAME, 
+                    port=SERVER_PORT, ssl_context=repeated_password.ssl_credentials)

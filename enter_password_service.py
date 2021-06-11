@@ -78,25 +78,25 @@ class EnterPassword:
             SERVICE_REPLY_1 = 'Service 1: Password entered is ' + login_details
 
             # Send password to service 2
-            req_status_2 = requests.post(url = 'https://' + URL + ':' + '5001', 
+            req_status_2 = requests.post(url = 'https://' + URL + '2' + ':' + '5001', 
                                         json={'password':login_details}, verify=False,
                                         timeout=5)
 
             # Send password to service 3
-            req_status_3 = requests.post(url = 'https://' + URL + ':' + '5002', 
+            req_status_3 = requests.post(url = 'https://' + URL + '3' + ':' + '5002', 
                                         json={'password':login_details}, verify=False,
                                         timeout=5)
 
             # Send password to service 4
-            req_status_4 = requests.post(url = 'https://' + URL + ':' + '5003', 
+            req_status_4 = requests.post(url = 'https://' + URL + '4' + ':' + '5003', 
                                         json={'password':login_details}, verify=False,
                                         timeout=5)
                                     
 
-            return redirect('https://' + URL + ':' + MAIN_SERVER_PORT + '/result', code=302)
+            return redirect('/result', code=302)
       
     
 if __name__ == '__main__':
     main_service = EnterPassword()
-    flask_app.run(ssl_context=main_service.ssl_credentials, threaded=main_service.
-                    multi_threaded, debug = True, host=SERVER_NAME, port=SERVER_PORT)
+    flask_app.run(threaded=main_service.multi_threaded, debug = True, host=SERVER_NAME, 
+                    port=SERVER_PORT, ssl_context=main_service.ssl_credentials)
