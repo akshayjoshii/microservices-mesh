@@ -2,37 +2,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-1
+  name: service-3
   labels:
-    app: service-1
+    app: service-3
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: service-1
+      app: service-3
   template:
     metadata:
       labels:
-        app: service-1
+        app: service-3
     spec:
       containers:
-        - name: service-1
-          image: service_1:v1
+        - name: service-3
+          image: service_3:v1
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 5000
+            - containerPort: 5002
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-1
+  name: service-3
 spec:
   ports:
-  - name: https 
-    port: 5000
+  - port: 5002
     protocol: TCP
-    targetPort: 5000
+    targetPort: 5002
   selector:
-    app: service-1
-  type: LoadBalancer
+    app: service-3
+  type: ClusterIP
