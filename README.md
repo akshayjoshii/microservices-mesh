@@ -41,10 +41,10 @@
    > For Unix: 'eval $(minikube docker-env)'
 
 5. Build multiple Dockerfiles in the same project
-   > docker build --no-cache -f service_1.Dockerfile -t service:1 . \
-   > docker build --no-cache -f service_2.Dockerfile -t service:2 . \
-   > docker build --no-cache -f service_3.Dockerfile -t service:3 . \
-   > docker build --no-cache -f service_4.Dockerfile -t service:4 .
+   > docker build --no-cache -f service_1.Dockerfile -t service_1 . \
+   > docker build --no-cache -f service_2.Dockerfile -t service_2 . \
+   > docker build --no-cache -f service_3.Dockerfile -t service_3 . \
+   > docker build --no-cache -f service_4.Dockerfile -t service_4 .
 
 6. Deploy the images as pods in Kubernetes
    > kubectl create -f service-1.yml \
