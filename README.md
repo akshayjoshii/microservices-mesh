@@ -64,10 +64,10 @@
    > minikube service --url --https service-4
 
 9. *Optional* - Run the containers directly from the images built above (Without using Kubernetes)
-   > docker run --name s_1 -itp 5000:5000 service:1 \
-   > docker run --name s_2 -itp 5001:5001 service:2 \
-   > docker run --name s_3 -itp 5002:5002 service:3 \
-   > docker run --name s_4 -itp 5003:5003 service:4
+   > docker run --name s_1 -itp 5000:5000 service_1 \
+   > docker run --name s_2 -itp 5001:5001 service_2 \
+   > docker run --name s_3 -itp 5002:5002 service_3 \
+   > docker run --name s_4 -itp 5003:5003 service_4
 
 10. Run the application by going to Chrome/Firefox browser & enter the URL displayed in the terminal (*Don't forget to use https*)
 
